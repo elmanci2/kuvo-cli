@@ -6,10 +6,10 @@ REPO_URL="https://github.com/tu_usuario/tu_repositorio.git"
 # Temporary directory to clone the repository
 TEMP_DIR=$(mktemp -d)
 
-# Check if Python is installed
+# Check if Python3 is installed
 if ! command -v python3 &> /dev/null
 then
-    echo "Python is not installed. Please install Python first."
+    echo "Python3 is not installed. Please install Python3 first."
     exit 1
 fi
 
@@ -25,32 +25,32 @@ if [ $? -ne 0 ]; then
 fi
 
 # Install dependencies
-if command -v pip &> /dev/null
+if command -v pip3 &> /dev/null
 then
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
     if [ $? -eq 0 ]; then
-        echo "Dependencies installed successfully with pip."
+        echo "Dependencies installed successfully with pip3."
     else
-        echo "Failed to install dependencies with pip."
+        echo "Failed to install dependencies with pip3."
         exit 1
     fi
 else
-    echo "pip is not installed. Please install pip first."
+    echo "pip3 is not installed. Please install pip3 first."
     exit 1
 fi
 
 # Install the package
-if command -v pip &> /dev/null
+if command -v pip3 &> /dev/null
 then
-    pip install .
+    pip3 install .
     if [ $? -eq 0 ]; then
-        echo "Package installed successfully with pip."
+        echo "Package installed successfully with pip3."
     else
-        echo "Failed to install the package with pip."
+        echo "Failed to install the package with pip3."
         exit 1
     fi
 else
-    echo "pip is not installed. Please install pip first."
+    echo "pip3 is not installed. Please install pip3 first."
     exit 1
 fi
 

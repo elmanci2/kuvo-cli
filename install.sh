@@ -27,7 +27,7 @@ fi
 # Install the package with --break-system-packages
 if command -v pip3 &> /dev/null
 then
-    pip3 install . --break-system-packages
+    pip3 install . --break-system-packages --user
     if [ $? -eq 0 ]; then
         echo "Package installed successfully with pip3."
     else

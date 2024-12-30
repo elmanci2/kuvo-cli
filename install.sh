@@ -2,12 +2,16 @@
 
 # Git repository URL
 REPO_URL="https://github.com/elmanci2/kuvo-cli.git"
+
 # Temporary directory to clone the repository
 TEMP_DIR=$(mktemp -d)
 
+# Logo
 logo="██╗░░██╗██╗░░░██╗██╗░░░██╗░█████╗░\n██║░██╔╝██║░░░██║██║░░░██║██╔══██╗\n█████═╝░██║░░░██║╚██╗░██╔╝██║░░██║\n██╔═██╗░██║░░░██║░╚████╔╝░██║░░██║\n██║░╚██╗╚██████╔╝░░╚██╔╝░░╚█████╔╝\n╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░░╚════╝░"
 
-echo -e "\e[1;32m$logo\e[0m"
+# Print the logo
+echo -e "\e[1;32m$logo\e[0m \n \n \n"
+
 # Check if Python3 is installed
 if ! command -v python3 &> /dev/null
 then
@@ -43,13 +47,13 @@ fi
 
 # Determine the shell and update the PATH
 SHELL=$(basename "$SHELL")
-INSTALL_PATH="/Users/$USER/Library/Python/3.13/bin"
+INSTALL_PATH="$HOME/Library/Python/3.13/bin"
 EXPORT_LINE="export PATH=\"$INSTALL_PATH:\$PATH\""
 
 if [ "$SHELL" = "zsh" ]; then
-    RC_FILE=~/.zshrc
+    RC_FILE="$HOME/.zshrc"
 elif [ "$SHELL" = "bash" ]; then
-    RC_FILE=~/.bashrc
+    RC_FILE="$HOME/.bashrc"
 else
     echo "Unsupported shell. Please manually add '$INSTALL_PATH' to your PATH."
     exit 1

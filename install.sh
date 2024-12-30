@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Git repository URL
-REPO_URL="https://github.com/tu_usuario/tu_repositorio.git"
+REPO_URL="https://github.com/elmanci2/kuvo-cli.git"
 
 # Temporary directory to clone the repository
 TEMP_DIR=$(mktemp -d)

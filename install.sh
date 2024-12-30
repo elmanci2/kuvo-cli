@@ -24,21 +24,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Install dependencies with --break-system-packages
-if command -v pip3 &> /dev/null
-then
-    pip3 install -r requirements.txt --break-system-packages
-    if [ $? -eq 0 ]; then
-        echo "Dependencies installed successfully with pip3."
-    else
-        echo "Failed to install dependencies with pip3."
-        exit 1
-    fi
-else
-    echo "pip3 is not installed. Please install pip3 first."
-    exit 1
-fi
-
 # Install the package with --break-system-packages
 if command -v pip3 &> /dev/null
 then

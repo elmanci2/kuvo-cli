@@ -11,13 +11,13 @@ if ! command -v python3 &> /dev/null
 then
     echo "Python3 is not installed. Please install Python3 first."
     exit 1
+else
+    echo "Python3 is installed."
 fi
 
-# Clone the repository excluding the venv folder
-git clone --depth 1 --no-checkout $REPO_URL $TEMP_DIR
+# Clone the repository
+git clone $REPO_URL $TEMP_DIR
 cd $TEMP_DIR
-git sparse-checkout init --cone
-git sparse-checkout set app install.sh requirements.txt setup.py
 
 if [ $? -ne 0 ]; then
     echo "Failed to clone the repository."
@@ -39,10 +39,10 @@ else
     exit 1
 fi
 
-# Install the package
+# Install the package with --break-system-packages
 if command -v pip3 &> /dev/null
 then
-    pip3 install .
+    pip3 install . --break-system-packages
     if [ $? -eq 0 ]; then
         echo "Package installed successfully with pip3."
     else

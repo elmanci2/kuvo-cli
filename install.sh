@@ -7,7 +7,7 @@ REPO_URL="https://github.com/tu_usuario/tu_repositorio.git"
 TEMP_DIR=$(mktemp -d)
 
 # Check if Python is installed
-if ! command -v python &> /dev/null
+if ! command -v python3 &> /dev/null
 then
     echo "Python is not installed. Please install Python first."
     exit 1

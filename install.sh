@@ -2,10 +2,12 @@
 
 # Git repository URL
 REPO_URL="https://github.com/elmanci2/kuvo-cli.git"
-
 # Temporary directory to clone the repository
 TEMP_DIR=$(mktemp -d)
 
+logo="██╗░░██╗██╗░░░██╗██╗░░░██╗░█████╗░\n██║░██╔╝██║░░░██║██║░░░██║██╔══██╗\n█████═╝░██║░░░██║╚██╗░██╔╝██║░░██║\n██╔═██╗░██║░░░██║░╚████╔╝░██║░░██║\n██║░╚██╗╚██████╔╝░░╚██╔╝░░╚█████╔╝\n╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░░╚════╝░"
+
+echo -e "\e[1;32m$logo\e[0m"
 # Check if Python3 is installed
 if ! command -v python3 &> /dev/null
 then
@@ -37,6 +39,29 @@ then
 else
     echo "pip3 is not installed. Please install pip3 first."
     exit 1
+fi
+
+# Determine the shell and update the PATH
+SHELL=$(basename "$SHELL")
+INSTALL_PATH="/Users/$USER/Library/Python/3.13/bin"
+EXPORT_LINE="export PATH=\"$INSTALL_PATH:\$PATH\""
+
+if [ "$SHELL" = "zsh" ]; then
+    RC_FILE=~/.zshrc
+elif [ "$SHELL" = "bash" ]; then
+    RC_FILE=~/.bashrc
+else
+    echo "Unsupported shell. Please manually add '$INSTALL_PATH' to your PATH."
+    exit 1
+fi
+
+# Check if the line already exists
+if ! grep -Fxq "$EXPORT_LINE" $RC_FILE; then
+    echo "$EXPORT_LINE" >> $RC_FILE
+    source $RC_FILE
+    echo "PATH updated in $RC_FILE"
+else
+    echo "PATH already updated in $RC_FILE"
 fi
 
 # Clean up the temporary directory

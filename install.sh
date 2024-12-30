@@ -46,10 +46,9 @@ else
     echo "pip3 is not installed. Please install pip3 first."
     exit 1
 fi
-
 # Determine the shell and update the PATH
 SHELL=$(basename "$SHELL")
-INSTALL_PATH="$HOME/Library/Python/3.13/bin"
+INSTALL_PATH="$HOME/.local/bin"
 EXPORT_LINE="export PATH=\"$INSTALL_PATH:\$PATH\""
 
 if [ "$SHELL" = "zsh" ]; then

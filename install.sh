@@ -10,8 +10,10 @@ TEMP_DIR=$(mktemp -d)
 logo="██╗░░██╗██╗░░░██╗██╗░░░██╗░█████╗░\n██║░██╔╝██║░░░██║██║░░░██║██╔══██╗\n█████═╝░██║░░░██║╚██╗░██╔╝██║░░██║\n██╔═██╗░██║░░░██║░╚████╔╝░██║░░██║\n██║░╚██╗╚██████╔╝░░╚██╔╝░░╚█████╔╝\n╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░░╚════╝░"
 
 # Print the logo
-echo -e "\e[1;32m$logo\e[0m \n \n \n"
-
+echo -e "\n \n \n"
+echo -e "$logo"
+echo -e "\n \n \n"
+echo -e "\nInstalling kuvo-cli..."
 # Check if Python3 is installed
 if ! command -v python3 &> /dev/null
 then

@@ -1,18 +1,19 @@
 #!/bin/bash
 
-
+# Git repository URL
 REPO_URL="https://github.com/tu_usuario/tu_repositorio.git"
 
-
+# Temporary directory to clone the repository
 TEMP_DIR=$(mktemp -d)
 
-
+# Check if Python is installed
 if ! command -v python &> /dev/null
 then
     echo "Python is not installed. Please install Python first."
     exit 1
 fi
 
+# Clone the repository excluding the venv folder
 git clone --depth 1 --no-checkout $REPO_URL $TEMP_DIR
 cd $TEMP_DIR
 git sparse-checkout init --cone
@@ -23,7 +24,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-
+# Install dependencies
 if command -v pip &> /dev/null
 then
     pip install -r requirements.txt
@@ -38,7 +39,7 @@ else
     exit 1
 fi
 
-
+# Install the package
 if command -v pip &> /dev/null
 then
     pip install .
@@ -53,6 +54,7 @@ else
     exit 1
 fi
 
+# Clean up the temporary directory
 rm -rf $TEMP_DIR
 
 echo "Installation completed."

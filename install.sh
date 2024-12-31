@@ -14,6 +14,7 @@ echo -e "\n \n \n"
 echo -e "$logo"
 echo -e "\n \n \n"
 echo -e "\nInstalling kuvo-cli..."
+
 # Check if Python3 is installed
 if ! command -v python3 &> /dev/null
 then
@@ -46,9 +47,10 @@ else
     echo "pip3 is not installed. Please install pip3 first."
     exit 1
 fi
+
 # Determine the shell and update the PATH
 SHELL=$(basename "$SHELL")
-INSTALL_PATH="$HOME/.local/bin"
+INSTALL_PATH="$HOME/Library/Python/3.13/bin"
 EXPORT_LINE="export PATH=\"$INSTALL_PATH:\$PATH\""
 
 if [ "$SHELL" = "zsh" ]; then
@@ -60,14 +62,16 @@ else
     exit 1
 fi
 
-# Check if the line already exists
+# Check if the line already exists and add it if not
 if ! grep -Fxq "$EXPORT_LINE" $RC_FILE; then
     echo "$EXPORT_LINE" >> $RC_FILE
-    source $RC_FILE
     echo "PATH updated in $RC_FILE"
 else
     echo "PATH already updated in $RC_FILE"
 fi
+
+# Apply changes to the current shell session
+source $RC_FILE
 
 # Clean up the temporary directory
 rm -rf $TEMP_DIR
